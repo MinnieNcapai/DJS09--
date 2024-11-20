@@ -1,42 +1,33 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial;
+  color: darkgrey;
+  flex-direction: column;
+}
+
+.container {
+  margin: 20px;
+}
+
+.nav-bar {
+  width: 100%;
+  position: sticky;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 12%) 0 1px 8px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  height: 30px;
+  width: 46px;
+  background-size: 47px;
+  background-image: url('images/sofa-logo.png');
+  margin: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.user-container {
+  margin: 20px;
 }
