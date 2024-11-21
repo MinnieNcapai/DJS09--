@@ -1,7 +1,7 @@
 import { LoyaltyUser } from './enums'
 import { Price, Country } from './types'
 
-export default interface Review {
+export interface Review {
     name: string; 
     stars: number; 
     loyaltyUser: LoyaltyUser; 

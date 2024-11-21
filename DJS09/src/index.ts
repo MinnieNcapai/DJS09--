@@ -5,20 +5,15 @@
 
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from './utils';
 import { Permissions, LoyaltyUser } from './enums';
-import Review from './interfaces';
-import { Property } from './interfaces';
+import { Review,  Property } from './interfaces';
 import MainProperty from './classes';
 import './index.css';
 
-
-
-const propertyContainer = document.querySelector('.properties') as HTMLElement;
-const reviewContainer = document.querySelector('.reviews') as HTMLElement;
-const container = document.querySelector('.container') as HTMLElement;
-const button = document.querySelector('button') as HTMLElement;
-const footer = document.querySelector('.footer') as HTMLElement;
-
-//let isLoggedIn: boolean = false; // Fixed initialization
+const propertyContainer = document.querySelector('.properties') as HTMLElement | null;
+const reviewContainer = document.querySelector('.reviews') as HTMLElement | null;
+const container = document.querySelector('.container') as HTMLElement | null;
+const button = document.querySelector('button') as HTMLElement | null;
+const footer = document.querySelector('.footer') as HTMLElement | null;
 
 // Reviews
 const reviews: Review[] = [
@@ -54,7 +49,7 @@ const you = {
 // Array of Properties
 const properties: Property[] = [
     {
-        image: './images/colombia-property.jpg',
+        image: '/images/colombia-property.jpg',
         title: 'Colombian Shack',
         price: 45,
         location: {
@@ -67,7 +62,7 @@ const properties: Property[] = [
         isAvailable: true  
     },
     {
-        image: './images/poland-property.jpg',
+        image: '/images/poland-property.jpg',
         title: 'Polish Cottage',
         price: 30,
         location: {
@@ -80,7 +75,7 @@ const properties: Property[] = [
         isAvailable: false 
     },
     {
-        image: './images/london-property.jpg',
+        image: '/images/london-property.jpg',
         title: 'London Flat',
         price: 25,
         location: {
@@ -93,7 +88,7 @@ const properties: Property[] = [
         isAvailable: true
     },
     {
-        image: './images/malaysian-hotel.jpeg',
+        image: '/images/malaysian-hotel.jpeg',
         title: 'Malia Hotel',
         price: 35,
         location: {
@@ -113,49 +108,51 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 populateUser(you.isReturning, you.firstName);
 
 // Add the properties
-for (let i = 0; i < properties.length; i++) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.innerHTML = properties[i].title;
-    const image = document.createElement('img');
-    image.setAttribute('src', properties[i].image);
-    card.appendChild(image);
-    showDetails(you.permissions, card, properties[i].price);
-    propertyContainer.appendChild(card);
-}
-
-let count = 0;
-function addReviews(array: Review[]): void {
-    if (!count) {
-        count++;
-        const topTwo = getTopTwoReviews(array);
-        for (let i = 0; i < topTwo.length; i++) {
-            const card = document.createElement('div');
-            card.classList.add('review-card');
-            card.innerHTML = `${topTwo[i].stars} stars from ${topTwo[i].name}`;
-            reviewContainer.appendChild(card);
-        }
-        container.removeChild(button);
+if (propertyContainer) {
+    for (let i = 0; i < properties.length; i++) {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = properties[i].title;
+        const image = document.createElement('img');
+        image.setAttribute('src', properties[i].image);
+        card.appendChild(image);
+        showDetails(you.permissions, card, properties[i].price);
+        propertyContainer.appendChild(card);
     }
 }
 
-button.addEventListener('click', () => addReviews(reviews));
+let count = 0;
+if (button) {
+    button.addEventListener('click', () => {
+        if (!count) {
+            count++;
+            const topTwo = getTopTwoReviews(reviews);
+            topTwo.forEach(review => {
+                const card = document.createElement('div');
+                card.classList.add('review-card');
+                card.innerHTML = `${review.stars} stars from ${review.name}`;
+                reviewContainer?.appendChild(card);
+            });
+            button.style.display = 'none';
+        }
+    });
+}
 
+// Footer information
 const currentLocation: [string, string, number] = ['London', '11.03', 17];
-footer.innerHTML = `${currentLocation[0]} ${currentLocation[1]} ${currentLocation[2]}°`;
+if (footer) {
+    footer.innerHTML = `${currentLocation[0]} ${currentLocation[1]} ${currentLocation[2]}°`;
+}
 
-const yourMainProperty = new MainProperty( // chanhged let to const
-    './images/italian-property.jpg', 
+// Display main property
+const yourMainProperty = new MainProperty(
+    '/images/italian-property.jpg',
     'Italian House',
-    [{
-        name: 'Olive',
-        stars: 5,
-        loyaltyUser: LoyaltyUser.GOLD_USER,
-        date: '12-04-2021'
-    }]
+    [{ name: 'Olive', stars: 5, loyaltyUser: LoyaltyUser.GOLD_USER, date: '12-04-2021' }]
 );
 
-const mainImageContainer = document.querySelector('.main-image') as HTMLElement; // Combined declaration and assertion
-const image = document.createElement('img');
-image.setAttribute('src', yourMainProperty.src);
-mainImageContainer?.appendChild(image); // Optional chaining in case element is null
+if (container) {
+    const image = document.createElement('img');
+    image.setAttribute('src', yourMainProperty.src);
+    container.appendChild(image);
+}

@@ -3,7 +3,7 @@ const returningUserDisplay = document.querySelector('#returning-user') as HTMLEl
 const userNameDisplay = document.querySelector('#user') as HTMLElement;
 
 import { LoyaltyUser, Permissions } from './enums';
-import Review from './interfaces';
+import {Review}  from './interfaces';
 
 // Helper function defined first for clarity
 export function makeMultiple(value: number): string {
