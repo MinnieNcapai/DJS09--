@@ -1,11 +1,6 @@
-// Number Types mini-challenge 10 10.2
-// Write a function that will only accept numbers and attend to 
-// all TypeScript weakness flags.
-// : number
-
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from './utils';
 import { Permissions, LoyaltyUser } from './enums';
-import { Review,  Property } from './interfaces';
+import { Review, Property } from './interfaces';
 import MainProperty from './classes';
 import './index.css';
 
@@ -112,11 +107,27 @@ if (propertyContainer) {
     for (let i = 0; i < properties.length; i++) {
         const card = document.createElement('div');
         card.classList.add('card');
-        card.innerHTML = properties[i].title;
+        
+        // Add property title
+        const title = document.createElement('h3');
+        title.innerHTML = properties[i].title;
+        card.appendChild(title);
+
+        // Add property price
+        const price = document.createElement('p');
+        price.classList.add('price'); // Optional: add a class for styling
+        price.innerHTML = `$${properties[i].price} per night`; // Format the price with the currency symbol
+        card.appendChild(price);
+
+        // Add property image
         const image = document.createElement('img');
         image.setAttribute('src', properties[i].image);
         card.appendChild(image);
+
+        // Call the showDetails function with price
         showDetails(you.permissions, card, properties[i].price);
+
+        // Append the card to the property container
         propertyContainer.appendChild(card);
     }
 }
