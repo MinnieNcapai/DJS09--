@@ -2,8 +2,8 @@ const reviewTotalDisplay = document.querySelector('#reviews') as HTMLElement;
 const returningUserDisplay = document.querySelector('#returning-user') as HTMLElement;
 const userNameDisplay = document.querySelector('#user') as HTMLElement;
 
-import { LoyaltyUser, Permissions } from '../pages/enums';
-import Review from '../pages/interfaces';
+import { LoyaltyUser, Permissions } from './enums';
+import Review from './interfaces';
 
 // Helper function defined first for clarity
 export function makeMultiple(value: number): string {

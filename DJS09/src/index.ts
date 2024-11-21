@@ -3,11 +3,13 @@
 // all TypeScript weakness flags.
 // : number
 
-import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from '../pages/utils';
-import { Permissions, LoyaltyUser } from '../pages/enums';
-import Review from '../pages/interfaces';
-import { Property } from '../pages/interfaces';
-import MainProperty from '../pages/classes';
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from './utils';
+import { Permissions, LoyaltyUser } from './enums';
+import Review from './interfaces';
+import { Property } from './interfaces';
+import MainProperty from './classes';
+import './index.css';
+
 
 
 const propertyContainer = document.querySelector('.properties') as HTMLElement;
@@ -52,7 +54,7 @@ const you = {
 // Array of Properties
 const properties: Property[] = [
     {
-        image: './src/assets/images/colombia-property.jpg',
+        image: './images/colombia-property.jpg',
         title: 'Colombian Shack',
         price: 45,
         location: {
@@ -65,7 +67,7 @@ const properties: Property[] = [
         isAvailable: true  
     },
     {
-        image: './src/assets/images/poland-property.jpg',
+        image: './images/poland-property.jpg',
         title: 'Polish Cottage',
         price: 30,
         location: {
@@ -78,7 +80,7 @@ const properties: Property[] = [
         isAvailable: false 
     },
     {
-        image: './src/assets/images/london-property.jpg',
+        image: './images/london-property.jpg',
         title: 'London Flat',
         price: 25,
         location: {
@@ -91,7 +93,7 @@ const properties: Property[] = [
         isAvailable: true
     },
     {
-        image: './src/assets/images/malaysian-hotel.jpeg',
+        image: './images/malaysian-hotel.jpeg',
         title: 'Malia Hotel',
         price: 35,
         location: {
@@ -143,7 +145,7 @@ const currentLocation: [string, string, number] = ['London', '11.03', 17];
 footer.innerHTML = `${currentLocation[0]} ${currentLocation[1]} ${currentLocation[2]}°`;
 
 const yourMainProperty = new MainProperty( // chanhged let to const
-    'images/italian-property.jpg', 
+    './images/italian-property.jpg', 
     'Italian House',
     [{
         name: 'Olive',
