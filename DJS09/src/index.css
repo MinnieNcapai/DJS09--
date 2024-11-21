@@ -3,8 +3,8 @@
     margin: 0;
     padding: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial;
-    color: rgb(169,169,169);
-    flex-direction: column;
+    color: rgb(169, 169, 169);
+    flex-direction: column; /* Keep the flow as column */
 }
 
 .container {
@@ -12,84 +12,117 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    order: 1; /* Ensure the container is below the nav-bar */
 }
 
 .container img {
     width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    margin: 20px 0;
 }
 
 .nav-bar {
     width: 100%;
     position: sticky;
-    background-color: rgb(255,255,255);
+    top: 0;
+    background-color: rgb(255, 255, 255);
     box-shadow: rgb(0 0 0 / 12%) 0 1px 8px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 10;
+    order: 0; /* Ensure nav-bar is on top */
 }
 
 .logo {
     height: 30px;
     width: 46px;
-    background-size: 47px;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-image: url('/images/sofa-logo.png');
-    margin: 20px;
 }
 
 .user-container {
-    margin: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 20px;
+    color: #333;
 }
 
 .properties {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 20px;
+    order: 2; /* Keep properties below the image */
 }
 
 .card {
-    width: 150px;
-    margin: 5px;
-    border-radius: 20px;
+    width: 200px;
+    margin: 10px;
+    border-radius: 10px;
     padding: 10px;
     box-shadow: rgb(0 0 0 / 12%) 0 1px 8px;
+    background-color: #fff;
+    text-align: center;
 }
 
 .card img {
     width: 100%;
-    
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .footer {
     width: 100%;
-    background-color: rgb(240,128,128);
+    background-color: rgb(240, 128, 128);
     text-align: center;
-    padding: 30px 0;
-    color: rgb(255,255,255);
+    padding: 20px 0;
+    color: rgb(255, 255, 255);
+    margin-top: 20px;
+    order: 3; /* Ensure footer stays at the bottom */
 }
 
 .review-card {
     padding: 10px;
+    text-align: left;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
 }
 
 .reviews {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     padding: 10px;
+    width: 100%;
+    max-width: 600px;
 }
 
 .break {
-    height: 1px;
+    height: 2px;
     width: 90%;
-    background-color: rgb(255,127,80);
+    background-color: rgb(255, 127, 80);
+    margin: 20px 0;
 }
 
 button {
-    background-color: rgb(0,128,0);
-    color: rgb(255,255,255);
+    background-color: rgb(0, 128, 0);
+    color: rgb(255, 255, 255);
     border-radius: 5px;
     border: none;
-    padding: 10px;
-    
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 button:hover {
-    background-color: rgb(218,165,32);
+    background-color: rgb(218, 165, 32);
 }
