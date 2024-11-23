@@ -1,16 +1,18 @@
+// Importing functions, enums, interfaces, and classes
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from './utils';
 import { Permissions, LoyaltyUser } from './enums';
 import { Review, Property } from './interfaces';
 import MainProperty from './classes';
 import './index.css';
 
+// Selecting DOM elements for various containers and elements
 const propertyContainer = document.querySelector('.properties') as HTMLElement | null;
 const reviewContainer = document.querySelector('.reviews') as HTMLElement | null;
 const container = document.querySelector('.container') as HTMLElement | null;
 const button = document.querySelector('button') as HTMLElement | null;
 const footer = document.querySelector('.footer') as HTMLElement | null;
 
-// Reviews
+// Array of reviews for the properties
 const reviews: Review[] = [
     {
         name: 'Sheila',
@@ -32,6 +34,7 @@ const reviews: Review[] = [
     },
 ];
 
+// User data
 const you = {
     firstName: 'Bobby',
     lastName: 'Brown',
@@ -41,8 +44,9 @@ const you = {
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 };
 
-// Array of Properties
+// Array of Properties 
 const properties: Property[] = [
+    // Each property includes details like image, title, price, etc.
     {
         image: '/images/colombia-property.jpg',
         title: 'Colombian Shack',
@@ -97,12 +101,12 @@ const properties: Property[] = [
     }
 ];
 
-// Functions
+// Functions for showing review totals, populating user data, etc.
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 
 populateUser(you.isReturning, you.firstName);
 
-// Add the properties
+// Add the properties to the DOM
 if (propertyContainer) {
     for (let i = 0; i < properties.length; i++) {
         const card = document.createElement('div');
@@ -132,30 +136,31 @@ if (propertyContainer) {
     }
 }
 
+// Handling button click to show top reviews
 let count = 0;
 if (button) {
     button.addEventListener('click', () => {
         if (!count) {
             count++;
-            const topTwo = getTopTwoReviews(reviews);
+            const topTwo = getTopTwoReviews(reviews);  // Get top 2 reviews
             topTwo.forEach(review => {
                 const card = document.createElement('div');
                 card.classList.add('review-card');
                 card.innerHTML = `${review.stars} stars from ${review.name}`;
                 reviewContainer?.appendChild(card);
             });
-            button.style.display = 'none';
+            button.style.display = 'none'; // Hide the button after displaying reviews
         }
     });
 }
 
-// Footer information
+// Footer information (location and temperature)
 const currentLocation: [string, string, number] = ['London', '11.03', 17];
 if (footer) {
     footer.innerHTML = `${currentLocation[0]} ${currentLocation[1]} ${currentLocation[2]}°`;
 }
 
-// Display main property
+// Display main property  (Italian House)
 const yourMainProperty = new MainProperty(
     '/images/italian-property.jpg',
     'Italian House',
@@ -163,7 +168,7 @@ const yourMainProperty = new MainProperty(
 );
 
 if (container) {
-    const image = document.createElement('img');
-    image.setAttribute('src', yourMainProperty.src);
-    container.appendChild(image);
+    const image = document.createElement('img'); 
+    image.setAttribute('src', yourMainProperty.src); // Set main property image
+    container.appendChild(image); // Add it to the container
 }
